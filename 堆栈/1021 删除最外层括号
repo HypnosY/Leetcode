@@ -1,0 +1,33 @@
+
+
+/*
+ 解题思路是利用数组，使用i来遍历整个S，然后sum来记录多少个（，遇到）则sum-1，这样就能保证左右括号相等。
+ 用j来覆盖修改原数组。
+*/
+
+char * removeOuterParentheses(char * S){
+    int i, sum=0, j=0;
+    int len = strlen(S);
+    for(i=0; i<len; i++)
+    {
+        if (S[i] == '(')
+        {
+            sum+= 1;
+        }
+        else{
+            sum-= 1;
+        }
+        if(S[i] == '(' && sum > 1)
+        {
+            S[j] = '(';
+            j++;
+        }
+        else if (S[i] == ')' && sum > 0){
+            S[j] = ')';
+            j++;
+        }
+    }
+    S[j] = '\0';
+    return S;
+}
+
